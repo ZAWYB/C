@@ -1339,13 +1339,11 @@
 int main(void)
 {
     int ch;
-    int vs = 'h';
 
     while ((ch = getchar()) != EOF)
     {
 
         putchar(ch);
-        putchar(vs);
     }
 
     return 0;
