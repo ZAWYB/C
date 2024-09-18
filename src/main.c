@@ -1335,16 +1335,223 @@
 // }
 
             //程序清单8.2 echo_eof.c程序 --重复输入，直到文件结尾。
+// #include <stdio.h>
+// int main(void)
+// {
+//     int ch;
+//
+//     while ((ch = getchar()) != EOF)
+//     {
+//
+//         putchar(ch);
+//     }
+//
+//     return 0;
+// }
+
+            //程序清单8.3 file_eof.c程序 --打开一个文件并显示该文件
+// #include <stdio.h>
+// #include <stdlib.h>
+// int main(void)
+// {
+//     int ch;
+//     FILE * fp;
+//     char fname[50];
+//
+//     printf("Enter the name of the file:");
+//     scanf("%s",fname);
+//
+//     fp = fopen(fname,"r");
+//
+//     if(fp == NULL)
+//     {
+//         printf("Failed to open file.Bye.\n");
+//         exit(1);
+//
+//     }
+//
+//     while((ch  = getc(fp)) != EOF)
+//     {
+//
+//         putchar(ch);
+//
+//     }
+//
+//     fclose(fp);
+//
+//     return 0;
+//
+// }
+
+            //程序清单8，4 guess.c程序 --猜数字游戏
+// #include<stdio.h>
+//  int main(void)
+// {
+//     int guess = 1;
+//      char respones;
+//
+//     printf(" Pick an integer from 1 to 100. I will try to guess");
+//     printf("it.\nRespond with a y if my guess is correct and with");
+//     printf("an n if it wrong.\n");
+//
+//      while (getchar() != 'y')
+//      {
+//         if(respones =='n')
+//         {
+//          printf("Well,then,is it %d?\n",++guess);
+//         }
+//          else
+//          {
+//            printf("Sorry, I  understand only y or n.\n");
+//          }
+//
+//          while (getchar() != '\n')//清空输入缓冲区中的字符，直到遇到换行符（\n）
+//              continue;
+//
+//      }
+//
+//     printf("I knew I know do it!\n");
+//
+//
+//      return 0;
+//
+//  }
+
+            //程序清单8.5 showcharl.c程序 --有较大I/O问题的程序
+// #include <stdio.h>
+// void display(char cr,int lines,int width);
+// int main(void)
+// {
+//     int ch;
+//     int rows,cols;
+//
+//     printf("Enter a character and two intergers:\n");
+//
+//
+//     //c 2 3 \n 循环检测到 c 2 3 后结束，\n还在缓冲区中，下次循环时会读到\n
+//     while ((ch = getchar()) != '\n')
+//     {
+//
+//          if(scanf("%d %d",&rows,&cols) != 2)
+//          {
+//              break;
+//          }
+//         display(ch,rows,cols);
+//         while (getchar() != '\n') //过滤\n，保证程序的正确性
+//         {
+//             continue;
+//         }
+//         printf("Enter another character and two intergers;\n");
+//         printf("Enter a newline to quit.\n");
+//     }
+//     printf("Bye.\n");
+//
+//     return 0;
+// }
+//
+// void display(char cr,int lines,int width)
+// {
+//     int row,col;
+//
+//     for (row = 1; row <= lines; row++)
+//     {
+//         for (col = 1; col <= width; col++)
+//         {
+//             putchar(cr);
+//         }
+//
+//         putchar('\n');
+//     }
+//
+// }
+
+            //程序清单9.1.1 lethead.c程序 --创建并使用简单函数
+// #include <stdio.h>
+//
+// #define NAME "GIGATHNK, INC"
+// #define ADDRESS "101 MEGABUCK PLAZA"
+// #define PLACE "MEGAPOLIS, CA 94904"
+// #define WIDTH 40
+//
+// void starbar(void);
+//
+// int main(void)
+// {
+//     starbar();
+//
+//     printf("%s\n",NAME);
+//     printf("%s\n",ADDRESS);
+//     printf("%s\n",PLACE);
+//
+//     starbar();
+//
+//     return 0;
+//
+// }
+//
+// void starbar(void)
+// {
+//     int count;
+//
+//     for(count = 1; count <= WIDTH; count++)
+//     {
+//         putchar('*');
+//     }
+//
+//     putchar('\n');
+// }
+
+            //程序清单9.2 lethead2.c程序 --创建并使用带参数的函数
 #include <stdio.h>
+#include <string.h>
+
+#define NAME "GIGATHNK, INC"
+#define ADDRESS "101 MEGABUCK PLAZA"
+#define PLACE "MEGAPOLIS, CA 94904"
+#define WIDTH 40
+#define SPACE ' '
+
+void show_n_char(char ch,int num);
+
 int main(void)
 {
-    int ch;
+    int space;
+    char border_char;
 
-    while ((ch = getchar()) != EOF)
+    border_char = getchar();
+
+
+    while (getchar() != '\n')
     {
+        continue;
+    }
+    show_n_char(border_char,WIDTH);
+    putchar('\n');
+   show_n_char(SPACE,12);
+    printf("%s\n",NAME);
+    space = (WIDTH - strlen(ADDRESS)) / 2;
 
+    show_n_char(SPACE,space);
+    printf("%s\n",ADDRESS);
+    show_n_char(SPACE,(WIDTH - strlen(PLACE)) / 2);
+
+    printf("%s\n",PLACE);
+    show_n_char(border_char,WIDTH);
+    putchar('\n');
+
+    return 0;
+
+}
+
+void show_n_char(char ch,int num)
+{
+    int count;
+
+    for(count = 1; count <= num; count++)
+    {
         putchar(ch);
     }
 
-    return 0;
+
 }
+
