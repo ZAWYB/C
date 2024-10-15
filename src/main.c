@@ -1505,53 +1505,312 @@
 #include <stdio.h>
 #include <string.h>
 
-#define NAME "GIGATHNK, INC"
-#define ADDRESS "101 MEGABUCK PLAZA"
-#define PLACE "MEGAPOLIS, CA 94904"
-#define WIDTH 40
-#define SPACE ' '
+// #define NAME "GIGATHNK, INC"
+// #define ADDRESS "101 MEGABUCK PLAZA"
+// #define PLACE "MEGAPOLIS, CA 94904"
+// #define WIDTH 40
+// #define SPACE ' '
+//
+// void show_n_char(char ch,int num);
+//
+// int main(void)
+// {
+//     int space;
+//     char border_char;
+//
+//     border_char = getchar();
+//
+//
+//     while (getchar() != '\n')
+//     {
+//         continue;
+//     }
+//     show_n_char(border_char,WIDTH);
+//     putchar('\n');
+//    show_n_char(SPACE,12);
+//     printf("%s\n",NAME);
+//     space = (WIDTH - strlen(ADDRESS)) / 2;
+//
+//     show_n_char(SPACE,space);
+//     printf("%s\n",ADDRESS);
+//     show_n_char(SPACE,(WIDTH - strlen(PLACE)) / 2);
+//
+//     printf("%s\n",PLACE);
+//     show_n_char(border_char,WIDTH);
+//     putchar('\n');
+//
+//     return 0;
+//
+// }
+//
+// void show_n_char(char ch,int num)
+// {
+//     int count;
+//
+//     for(count = 1; count <= num; count++)
+//     {
+//         putchar(ch);
+//     }
+//
+//
+// }
 
-void show_n_char(char ch,int num);
+            //程序清单9.6 recur.c程序 --递归演示
+// #include <stdio.h>
+//
+// void up_and_down(int n);
+//
+// int main(void)
+// {
+//     up_and_down(1);
+//     return 0;
+// }
+//
+// void up_and_down(int n)
+// {
+//     printf("Level %d: n location %p\n",n,&n);
+//
+//     if(n<4)
+//     {
+//      up_and_down(n + 1);
+//         printf("LEVEL %d: n location %p\n",n,&n);
+//     }
+// }
 
-int main(void)
-{
-    int space;
-    char border_char;
+// long rfact(int n) {
+//     long ans;
+//
+//     if (n>0)
+//         ans = n * rfact(n-1)
+//
+//     else {
+//         ans = 1;
+//     }
+//
+//     return 0;
+//
+// }
 
-    border_char = getchar();
+// 递归调用的顺序解释：
+// 1. 调用 rfact(3) --> 3 * rfact(2)
+// 2. 调用 rfact(2) --> 2 * rfact(1)
+// 3. 调用 rfact(1) --> 1 * rfact(0)
+// 4. 调用 rfact(0) --> 返回 1（因为 n == 0）
+// 返回过程：
+// 5. 从 rfact(0) 返回 1 给 rfact(1) --> 返回 1 * 1 = 1
+// 6. 从 rfact(1) 返回 1 给 rfact(2) --> 返回 2 * 1 = 2
+// 7. 从 rfact(2) 返回 2 给 rfact(3) --> 返回 3 * 2 = 6
+// 最终结果：rfact(3) 返回 6，即 3! 的结果
 
 
-    while (getchar() != '\n')
-    {
-        continue;
-    }
-    show_n_char(border_char,WIDTH);
-    putchar('\n');
-   show_n_char(SPACE,12);
-    printf("%s\n",NAME);
-    space = (WIDTH - strlen(ADDRESS)) / 2;
+//程序清单9.4.5 使用头文件
+//https://www.bilibili.com/video/BV1FP4y1u7ae/?p=18&spm_id_from=pageDriver&vd_source=da06173a72d1931f0f4e3ebc6dc82a1f
 
-    show_n_char(SPACE,space);
-    printf("%s\n",ADDRESS);
-    show_n_char(SPACE,(WIDTH - strlen(PLACE)) / 2);
+            //程序清单 9.12 locheck.c --查看变量被储存在何处
+#include <stdio.h>
 
-    printf("%s\n",PLACE);
-    show_n_char(border_char,WIDTH);
-    putchar('\n');
+// void mikado(int);
+//
+// int main(void)
+// {
+//     int pooh = 2;
+//     int bah = 5;
+//
+//     printf("In main(): pooh = %d and &pooh = %p\n",pooh,&pooh);
+//     printf("In main(): bah = %d and &bah = %p\n",bah,&bah);
+//
+//     mikado(pooh);
+//
+//     return 0;
+// }
+//
+// void mikado(int bah)
+// {
+//     int pooh = 10;
+//
+//     printf("In  mikado (),pooh = %d and &pooh = %p\n",pooh,&pooh);
+//     printf("In  mikado (),bah = %d and &bah = %p\n",bah,&bah);
+//
+// }
+
+            //程序清单 9.15 --使用指针解决交换函数的问题
+#include <stdio.h>
+
+// void interchange(int *u,int *v);
+// int main(void)
+// {
+//     int x = 5;
+//     int y = 10;
+//
+//     printf("Orriginally x = %d  and y = %d\n",x,y);
+//
+//     printf("%p\n",&x);
+//
+//     interchange(&x,&y);
+//
+//
+//
+//     printf("Now x = %d and y = %d\n",x,y);
+//
+//     return 0;
+// }
+//
+// void interchange(int *u,int*y)
+// {
+//     int temp;
+//
+//     temp = *u;
+//
+//     *u = *y;
+//
+//     *y = temp;
+// }
+
+            //程序清单10.1 day_monl.c --打印每个月的天数
+#include <stdio.h>
+
+// #define MONTHS 12
+// int main(void)
+// {
+//     const int days[MONTHS] = {31,28,31,30,31,30,31,31,30,31,30,31};
+//
+//     int index;
+//
+//
+//
+//     for (index = 0; index < MONTHS; index++)
+//     {
+//         printf("MONTH %2d has %2d days.\n",index + 1, days[index]);
+//     }
+//
+//
+// return 0;
+//
+// }
+
+            //程序清单10.2 --未初始化数组的错误
+// #include  <stdio.h>
+//
+// #define SIZE 4
+//
+// int main(void){
+//     int no_data[SIZE] = {1,2,3,4};
+//
+//     int i;
+//
+//     printf("%2s%14s\n", "i", "no_data[i]");
+//
+//     for (i=0; i< 5;i++)
+//     {
+//         printf("%2d%14d\n",i,no_data[i]);
+//     }
+//
+//
+//     return 0;
+//
+// }
+
+            //程序清单10.8 --指针地址
+// #include <stdio.h>
+// #define SIZE 4
+// int main(void)
+// {
+//     short dates[SIZE];
+//
+//     short *pti;
+//
+//     short index;
+//
+//     double bills[SIZE];
+//
+//     double *ptf;
+//
+//     pti = dates;
+//
+//     ptf = bills;
+//
+//     printf("%23s %15s\n","short","double");
+//
+//     for (index = 0; index < SIZE; index++)
+//     {
+//         printf("pointers + %d: %10p %10p\n",index, pti + index,ptf + index);
+//     }
+//
+//
+//     return 0;
+//
+// }
+
+                //程序清单10.10 --数组元素之和
+#include <stdio.h>
+// #define SIZE 10
+// int sum(int ar[],int n);
+// int main(void)
+// {
+//     int marbles[SIZE] = {20,10,5,39,4,16,19,26,31,30};
+//     long answer;
+//
+//     answer = sum(marbles,SIZE);
+//     printf("The total number of marbles is %ld.\n",answer);
+//     printf("The size of marbles is %zd bytes.\n",sizeof(marbles));
+//
+//     return 0;
+// }
+//
+// int sum(int ar[],int n)
+// {
+//     int i;
+//     int total = 0;
+//
+//     for (i = 0; i < n; i++)
+//     {
+//         total += ar[i];
+//     }
+//
+//     printf("The size of ar is %zd bytes.\n",sizeof(ar));
+//
+//     return total;
+// }
+
+            //程序清单10.13 --指针操作
+#include <stdio.h>
+int main(void) {
+    int urn[5] = {100,200,300,400,500};
+    int *ptr1, *ptr2, *ptr3;
+
+    ptr1 = urn;
+    ptr2 = &urn[2];
+
+    printf("pointer value, dereferenced pointer,pointer adderess:\n");
+    printf("ptrl = %p, *ptrl = %d, &ptrl = %p\n",ptr1, *ptr1, &ptr1);
+
+    //指针加法
+    ptr3 = ptr1 + 4;
+    printf("\nadding an int to a pointfer:\n");
+    printf("ptrl + 4 = %p, *ptrl + 4 = %d\n",ptr1 + 4,*(ptr1 + 4));
+
+    ptr1++;
+    printf("\nvalues after ptr1++:\n");
+    printf("ptr1 = %p, *ptr1 = %d &prt1 = %p\n",ptr1, *ptr1, &ptr1);
+
+    ptr2--;
+    printf("\nvaules after --ptr2:\n");
+    printf("ptr2 = %p,*ptr2 = %d &ptr2 = %p\n",ptr2, *ptr2, &ptr2);
+
+    --ptr1;//恢复初始值
+    ++ptr2;
+
+
+    printf("\nPointfers reset to original values:\n");
+    printf("ptr1 = %p, ptr2 = %p\n",ptr1,ptr2);
+
+    //一个指针减去另一个指针
+    printf("\nsubtracting one pointer from another:\n");
+    printf("ptr2 = %p,*ptr1  = %p ,ptr2 - ptr1  = %td\n",ptr2, *ptr1, ptr2 - ptr1);
+
+    //一个指针减去一个整数
+    printf("\nsubtracting an int from a pointer:\n");
+    printf("ptr3 = %p ,ptr3-2 = %p",ptr3,ptr3-2);
 
     return 0;
-
 }
-
-void show_n_char(char ch,int num)
-{
-    int count;
-
-    for(count = 1; count <= num; count++)
-    {
-        putchar(ch);
-    }
-
-
-}
-
