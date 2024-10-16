@@ -1774,43 +1774,87 @@
 
             //程序清单10.13 --指针操作
 #include <stdio.h>
+// int main(void) {
+//     int urn[5] = {100,200,300,400,500};
+//     int *ptr1, *ptr2, *ptr3;
+//
+//     ptr1 = urn;
+//     ptr2 = &urn[2];
+//
+//     printf("pointer value, dereferenced pointer,pointer adderess:\n");
+//     printf("ptrl = %p, *ptrl = %d, &ptrl = %p\n",ptr1, *ptr1, &ptr1);
+//
+//     //指针加法
+//     ptr3 = ptr1 + 4;
+//     printf("\nadding an int to a pointfer:\n");
+//     printf("ptrl + 4 = %p, *ptrl + 4 = %d\n",ptr1 + 4,*(ptr1 + 4));
+//
+//     ptr1++;
+//     printf("\nvalues after ptr1++:\n");
+//     printf("ptr1 = %p, *ptr1 = %d &prt1 = %p\n",ptr1, *ptr1, &ptr1);
+//
+//     ptr2--;
+//     printf("\nvaules after --ptr2:\n");
+//     printf("ptr2 = %p,*ptr2 = %d &ptr2 = %p\n",ptr2, *ptr2, &ptr2);
+// #include <stdio.h>
+//
+//
+//     --ptr1;//恢复初始值
+//     ++ptr2;
+//
+//
+//     printf("\nPointfers reset to original values:\n");
+//     printf("ptr1 = %p, ptr2 = %p\n",ptr1,ptr2);
+//
+//     //一个指针减去另一个指针
+//     printf("\nsubtracting one pointer from another:\n");
+//     printf("ptr2 = %p,*ptr1  = %p ,ptr2 - ptr1  = %td\n",ptr2, *ptr1, ptr2 - ptr1);
+//
+//     //一个指针减去一个整数
+//     printf("\nsubtracting an int from a pointer:\n");
+//     printf("ptr3 = %p ,ptr3-2 = %p",ptr3,ptr3-2);
+//
+//     return 0;
+// }
+
+            //程序清单10.14 --处理数组的函数
+#include<stdio.h>
+
+#define SIZE 5
+void show_array(const double ar[],int n);
+void mult_array(double ar[],int n,double mult);
+
 int main(void) {
-    int urn[5] = {100,200,300,400,500};
-    int *ptr1, *ptr2, *ptr3;
+    double dip[SIZE] = {20.0,17.66,8.2,15.3,22.22};
 
-    ptr1 = urn;
-    ptr2 = &urn[2];
+    printf("The original dip array:\n");
 
-    printf("pointer value, dereferenced pointer,pointer adderess:\n");
-    printf("ptrl = %p, *ptrl = %d, &ptrl = %p\n",ptr1, *ptr1, &ptr1);
-
-    //指针加法
-    ptr3 = ptr1 + 4;
-    printf("\nadding an int to a pointfer:\n");
-    printf("ptrl + 4 = %p, *ptrl + 4 = %d\n",ptr1 + 4,*(ptr1 + 4));
-
-    ptr1++;
-    printf("\nvalues after ptr1++:\n");
-    printf("ptr1 = %p, *ptr1 = %d &prt1 = %p\n",ptr1, *ptr1, &ptr1);
-
-    ptr2--;
-    printf("\nvaules after --ptr2:\n");
-    printf("ptr2 = %p,*ptr2 = %d &ptr2 = %p\n",ptr2, *ptr2, &ptr2);
-
-    --ptr1;//恢复初始值
-    ++ptr2;
-
-
-    printf("\nPointfers reset to original values:\n");
-    printf("ptr1 = %p, ptr2 = %p\n",ptr1,ptr2);
-
-    //一个指针减去另一个指针
-    printf("\nsubtracting one pointer from another:\n");
-    printf("ptr2 = %p,*ptr1  = %p ,ptr2 - ptr1  = %td\n",ptr2, *ptr1, ptr2 - ptr1);
-
-    //一个指针减去一个整数
-    printf("\nsubtracting an int from a pointer:\n");
-    printf("ptr3 = %p ,ptr3-2 = %p",ptr3,ptr3-2);
+    show_array(dip,SIZE);
+    mult_array(dip,SIZE,2.5);
+    printf("The dip array after calling mult_array():\n");
+    show_array(dip,SIZE);
 
     return 0;
+}
+
+/*显示数组的内容*/
+void show_array(const double ar[],int n)
+{
+    int i;
+    for(i = 0; i<n;i++)
+    {
+        printf("%8.3f\n",ar[i]);
+    }
+
+    putchar('\n');
+}
+
+/*把数组的每一个元素都成以相同的值*/
+void mult_array(double ar[],int n, double mult)
+{
+    int i;
+    for(i = 0;i<n;i++)
+    {
+        ar[i] *= mult;
+    }
 }
