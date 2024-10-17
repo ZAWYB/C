@@ -1817,44 +1817,76 @@
 //     return 0;
 // }
 
-            //程序清单10.14 --处理数组的函数
+            //程序清单10.14 --处理数组的函数  对形式参数使用const限定符
 #include<stdio.h>
 
-#define SIZE 5
-void show_array(const double ar[],int n);
-void mult_array(double ar[],int n,double mult);
+// #define SIZE 5
+// void show_array(const double ar[],int n);
+// void mult_array(double ar[],int n,double mult);
+//
+// int main(void) {
+//     double dip[SIZE] = {20.0,17.66,8.2,15.3,22.22};
+//
+//     printf("The original dip array:\n");
+//
+//     show_array(dip,SIZE);
+//     mult_array(dip,SIZE,2.5);
+//     printf("The dip array after calling mult_array():\n");
+//     show_array(dip,SIZE);
+//
+//     return 0;
+// }
+//
+// /*显示数组的内容*/
+// void show_array(const double ar[],int n)
+// {
+//     int i;
+//     for(i = 0; i<n;i++)
+//     {
+//         printf("%8.3f\n",ar[i]);
+//     }
+//
+//     putchar('\n');
+// }
+//
+// /*把数组的每一个元素都成以相同的值*/
+// void mult_array(double ar[],int n, double mult)
+// {
+//     int i;
+//     for(i = 0;i<n;i++)
+//     {
+//         ar[i] *= mult;
+//     }
+// }
 
+            //程序清单10.15 --zippo的相关信息 指针和多维数组
+// #include <stdio.h>
+// int main(void)
+// {
+//     int zippo[4][2] = {{2,4},{6,8},{1,3},{5,7}};
+//
+//     printf(" zippo = %p,    zippo+1 = %p\n",zippo,zippo+1);
+//     printf("zippo[0] = %p, zippo[0]+1 = %p\n",zippo[0],zippo[0]+1);
+//     printf("  *zippo = %p, *zippo+1 = %p\n",*zippo,*zippo+1);
+//     printf("zippo[0][0] = %d\n",zippo[0][0]);
+//     printf(" *zippo[0] = %d\n",*zippo[0]);
+//     printf("    **zippo = %d\n",**zippo);
+//     printf("        zippo[2][1] = %d\n",zippo[2][1]);
+//     printf("*(*(zippo+2) + 1) = %d\n",*(*(zippo +2) +1));
+//
+//     return 0;
+// }
+
+#include <stdio.h>
 int main(void) {
-    double dip[SIZE] = {20.0,17.66,8.2,15.3,22.22};
+    int a = 10;
+    int b = 20;
+    int c[3] = {3,7,9};
 
-    printf("The original dip array:\n");
+    int *ptr = c + 1 ;
 
-    show_array(dip,SIZE);
-    mult_array(dip,SIZE,2.5);
-    printf("The dip array after calling mult_array():\n");
-    show_array(dip,SIZE);
+    printf("%d\n",ptr[1]);
 
     return 0;
-}
 
-/*显示数组的内容*/
-void show_array(const double ar[],int n)
-{
-    int i;
-    for(i = 0; i<n;i++)
-    {
-        printf("%8.3f\n",ar[i]);
-    }
-
-    putchar('\n');
-}
-
-/*把数组的每一个元素都成以相同的值*/
-void mult_array(double ar[],int n, double mult)
-{
-    int i;
-    for(i = 0;i<n;i++)
-    {
-        ar[i] *= mult;
-    }
 }
