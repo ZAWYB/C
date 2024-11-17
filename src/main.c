@@ -679,3 +679,117 @@ int double_t(int n) {
     return t;
 }
 */
+
+/*
+#include<stdio.h>
+
+int main(void) {
+    int number_frist; //求模运算符第一运算对象。
+    int number_second;//求模运算符第二运算对象。
+    int number_result ; //函数，计算两数%结果。
+
+
+    printf("enter number_second:");
+    scanf("%d",&number_second);
+    while (number_second == 0) {
+        printf("number_second cannot be zero. Please enter again: ");
+        scanf("%d", &number_second);
+    }
+
+    printf("enter number_frist:");
+    scanf("%d",&number_frist);
+
+    while(number_frist>0) {
+
+        number_result = number_frist % number_second;
+
+        printf("number_result = %d\n",number_result);
+
+        printf("enter number_frist:");
+
+        scanf("%d",&number_frist);
+
+    }
+
+    return 0;
+}
+*/
+
+
+#include<stdio.h>
+void Temperatures(double tem_hua);
+int main(void) {
+    double input;
+
+    printf("enter tem_hua:");
+
+
+     while (scanf("%lf", &input) == 1 && input>0 ) {
+        Temperatures(input);
+        printf("q to quit");
+
+    }
+    /*while (input>0 ) {
+        Temperatures(input);
+        printf("q to quit\n");
+         printf("enter tem_hua:");
+        scanf("%lf",&input);
+
+    }*/
+
+    return 0;
+
+}
+void Temperatures(double tem_hua) {
+    double tem_she;
+    double tem_kai;
+
+    tem_she = 5.0/9.0*(tem_hua - 32);
+    tem_kai = tem_she + 273.16;
+
+    printf("tem_hua = %.2f,tem_she = %.2f,tem_kai = %.2f\n",tem_hua,tem_she,tem_kai);
+
+
+}
+
+
+/*
+//优化
+#include <stdio.h>
+void Temperatures(double tem_hua);
+
+int main(void) {
+    double input;
+    char buffer[100]; // 存储用户输入
+
+    printf("Enter temperature in Fahrenheit (type 'q' to quit): ");
+    while (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+        // 检查是否输入了 'q'
+        if (buffer[0] == 'q' || buffer[0] == 'Q') {
+            break;
+        }
+
+        // 尝试将输入转换为浮点数
+        if (sscanf(buffer, "%lf", &input) == 1 && input >= 0) {
+            Temperatures(input);
+        } else {
+            printf("Invalid input. Please enter a valid number or 'q' to quit: ");
+        }
+
+        printf("Enter another temperature (type 'q' to quit): ");
+    }
+
+    printf("Program exited.\n");
+    return 0;
+}
+
+void Temperatures(double tem_hua) {
+    double tem_she; // 摄氏温度
+    double tem_kai; // 开尔文温度
+
+    tem_she = 5.0 / 9.0 * (tem_hua - 32);
+    tem_kai = tem_she + 273.16;
+
+    printf("Fahrenheit: %.2f, Celsius: %.2f, Kelvin: %.2f\n", tem_hua, tem_she, tem_kai);
+}
+*/
