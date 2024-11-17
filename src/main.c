@@ -231,4 +231,76 @@ void two(void)
 */
 
                             //第三章 数据与C
+/*
+//程序清单 3.1
+#include <stdio.h>
+int main(void) {
+    float weight; //你的体重
+    float value;  //相当重量的白金价值
 
+    printf("Are you worth your weight in platinum?\n");
+    printf("Let's check it out.\n");
+    printf("Please enter you weight in pounds");
+
+    scanf("%f",&weight); //获取用户输入
+
+    value = weight * 1700 * 14.533; //把身高转换成价值
+
+    printf("Your weight in platinum is worth $%.2f.\n",value);
+    printf("You are easily worth that! If platinum prices drop,\n");
+
+    return 0;
+}
+*/
+
+/*
+//程序清单3.3 以十进制，八进制，十六进制打印十进制数100
+#include<stdio.h>
+int main(void) {
+    int x = 100;
+
+    printf("dec = %d,octal = %o,hex = %x\n",x,x,x);
+    printf("dec = %d,octal = %#o,hex = %#x\n",x,x,x);
+
+    return 0;
+}
+*/
+
+/*
+//打印基本数据类型的大小
+#include<stdio.h>
+int main(void) {
+
+    //整形
+    printf("char = %zd\n",sizeof(char));
+    printf("int = %zd\n",sizeof(int));
+    printf("long = %zd\n",sizeof(long));
+    printf("long long = %zd\n",sizeof(long long));
+
+    //浮点型
+    printf("float = %zd\n",sizeof(float));
+    printf("double = %zd\n",sizeof(double));
+    printf("long double = %zd\n",sizeof(long double));
+
+    return 0;
+}
+*/
+
+/*
+//程序清单3.10 使用转义序列
+#include <stdio.h>
+
+int main(void) {
+    float salary = 0;
+
+    printf("\aEnter your desired monthly salary: $_____");
+    printf("\b\b\b\b\b"); // 退格到需要输入的位置
+
+    scanf("%f", &salary);
+
+    printf("\n\t$%.2f a month is $%.2f a year.", salary, salary * 12.0);
+    printf("\rGREE!\n");
+
+    return 0;
+}
+*/
