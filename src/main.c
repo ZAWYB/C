@@ -305,6 +305,73 @@ int main(void) {
 }
 */
 
-### 3.11编程练习
+                                                    //3.11编程练习
+/*
+//1.关于系统如何处理整数上溢，浮点数上溢，下溢。
+#include <stdio.h>
+#include <float.h>
+#include <limits.h>
 
+int main(void) {
+    int big_int = 2147483647; //最大有符号int
 
+    float big_float = 3.4e38; //最大float
+
+    float small_float = 10.0/3; //最小float
+
+    printf("big_int = %d\n",big_int+1);
+    printf("big_float = %f\n",big_float*10);
+
+    printf("big float %f\n",small_float);
+    printf("max float = %f\n",FLT_MAX);
+    printf("max int  = %d\n",INT_MAX);
+
+    return 0;
+}
+*/
+
+/*
+//2.
+#include<stdio.h>
+int main(void) {
+    int number;
+
+    scanf("%d",&number);
+
+    printf("%c",number);
+
+     return 0;
+ }
+*/
+
+/*
+//3.
+#include <stdio.h>
+int main(void) {
+
+    printf("\a");
+    printf("S\n");
+    printf("BY");
+
+    return 0;
+}
+*/
+
+/*
+//4.
+#include<stdio.h>
+int main(void) {
+    float number;
+
+    printf("Enter a float_point value:");
+    scanf("%f",&number);
+
+    printf("fixed_point notation:%.6f\n",number);
+    printf("exponential notation:%e\n",number);
+
+    printf("p notation: %a\n",number);
+
+    return 0;
+
+}
+*/
