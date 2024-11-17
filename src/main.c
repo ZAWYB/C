@@ -505,6 +505,7 @@ int main(void) {
 }
 */
 
+/*
 #include<stdio.h>
 #include<string.h>
 int main(void) {
@@ -529,3 +530,152 @@ int main(void) {
 
     return 0;
 }
+*/
+
+/*
+#include<stdio.h>
+#define MIN 60
+int main(void) {
+
+    int input;
+    int hour;
+    int minute;
+    printf("enter minute:");
+    scanf("%d",&input);
+
+
+    while(input>0)
+        {
+        hour = input/MIN;
+        minute = input% MIN;
+        printf("%d,%d",hour,minute);
+
+        scanf("%d",&input);
+    }
+
+
+
+    return 0;w
+}
+*/
+
+/*
+#include<stdio.h>
+#define MIN_PER_HOU 60
+int main(int argc,char argv[]) {
+    int hours,minutes,input;
+
+    printf("CONVERT MINUTE TO HOURS!\n");
+    printf("PLEASE INPUT THE NUMBER OF MINUTE(<= 0 TO QUIT):");
+    scanf("%d",&input);
+    while(input>0) {
+
+        hours = input/MIN_PER_HOU;
+        minutes = input%MIN_PER_HOU;
+
+        printf("CONVERT TO %d HOUR AND %d MINTUES\n",hours,minutes);
+
+        printf("PLEASE CONTINUE INPUT THE NUMBER OF MINUTES(<= 0 TO QUIT):");
+        scanf("%d",&input);
+    }
+
+    printf("PROGRAM EXIT!\n");
+}
+*/
+
+/*
+#include<stdio.h>
+int main(void) {
+    int number= 0;
+    int max_number;
+
+    printf("enter number:");
+    scanf("%d",&max_number);
+
+    while(number++<11) {
+
+        printf("%d\n",max_number++);
+    }
+
+    return 0;
+}
+*/
+
+/*3.
+#include<stdio.h>
+
+#define R 7
+int main(void) {
+    int input;
+    int week = 0;
+    int daily = 0;
+
+    printf("enter input:");
+
+    scanf("%d",&input);
+
+    while(input>0) {
+        week = input/R;
+        daily = input%R;
+
+        printf("week = %d,daily = %d",week,daily);
+
+        scanf("%d",&input);
+    }
+
+    return 0;
+
+}
+*/
+
+/*
+#include<stdio.h>
+int main(void) {
+    int sum =0;
+    int count;
+
+    printf("enter count");
+    scanf("%d",&count);
+
+    while(count>0) {
+
+        sum = sum + count*count;
+        count--;
+    }
+
+    printf("total = %d",sum);
+
+    return 0;
+
+}
+*/
+
+/*
+#include<stdio.h>
+int double_t(int n);
+int main(void) {
+    int n;
+
+    printf("enter n:");
+    scanf("%d",&n);
+    double_t(n);
+    while(n>0) {
+
+        printf("%d的次方为%d\n",n,double_t(n));
+
+        scanf("%d",&n);
+    }
+
+
+
+    return 0;
+
+}
+
+int double_t(int n) {
+    int t;
+    t = n*n*n;
+
+    return t;
+}
+*/
