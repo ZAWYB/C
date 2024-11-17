@@ -375,3 +375,157 @@ int main(void) {
 
 }
 */
+
+                                //第四章
+/*
+//4.2使用不同类型的字符串
+#include<stdio.h>
+#define P "sssssss"
+int main(void) {
+   char ch[40];
+
+    printf("What is your name?\n");
+
+    scanf("%s",ch);
+
+    printf("%s,%s",ch,P);
+
+
+    return 0;
+
+}
+*/
+
+/*
+#include<stdio.h>
+int main(void) {
+
+
+    printf("%c",'\41');
+
+    return 0;
+}
+*/
+
+/*
+#include<stdio.h>
+int main(void) {
+    char x[20];
+    char m[20];
+
+    printf("Please input your first name:");
+    scanf("%s",x);
+
+    printf("Please input your last name:");
+    scanf("%s",m);
+
+    printf("%s,%s",m,x);
+
+    return 0;
+
+}
+*/
+
+/*
+#include<stdio.h>
+#include<string.h>
+int main(void) {
+    char name[50];
+    int with ;
+
+    printf("PLease enter your name:");
+    scanf("%s",name);
+
+    with= strlen(name);
+
+    printf("\"%20s\"\n",name);
+    printf("\"%-20s\"\n",name);
+    printf("\"%*s\"\n",(with+3),name);
+
+
+    return 0;
+
+}
+*/
+
+/*
+//3.
+#include<stdio.h>
+int main(void) {
+    float x;
+
+    printf("Enter a number:");
+
+    scanf("%f",&x);
+
+    printf("小数：%.1f,指数：%.1e\n",x,x);
+    printf("小数：%+2.3f,指数：%.3E",x,x);
+
+    return 0;
+
+}
+*/
+
+/*
+#include <stdio.h>
+#define YC 12
+int main(void) {
+
+    float tall;
+
+    printf("Please enter your tall:");
+
+    scanf("%f",&tall);
+
+    printf("shengao:%.3f",tall/YC);
+
+    return 0;
+}
+*/
+
+/*
+#include <stdio.h>
+int main(void) {
+
+    float speed;
+    float size;
+    float time;
+
+    printf("enter speed:");
+    scanf("%f",&speed);
+
+    printf("enter size；");
+    scanf("%f",&size);
+
+    time = (size*8)/speed;
+    printf("time = %.2f",time);
+
+    return 0;
+
+}
+*/
+
+#include<stdio.h>
+#include<string.h>
+int main(void) {
+    char name_m[20];
+    char name_x[20];
+
+
+
+     printf("enter name_m");
+    scanf("%s",name_m);
+
+
+
+
+    printf("enter name_x");
+    scanf("%s",name_x);
+
+    printf("%s %s\n",name_x,name_m);
+    printf("%*d,%*d",strlen(name_x),strlen(name_x),strlen(name_m),strlen(name_m));
+
+
+
+    return 0;
+}
