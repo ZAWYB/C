@@ -90,34 +90,57 @@ C标准规定类型不匹配的 printf 会导致未定义行为
 所以：指针是强类型的！！！也就是说：我们需要用特定类型的指针变量来存放特定类型变量的地址。
 */
 
+// int main(void)
+// {
+//     int a = 1025;
+// 	//00000000 00000000 00000100 00000001
+// 	int *p; //指向整型的指针来保存整型数据的地址
+//     p = &a;
+// 	printf("size of integer is %d bytes\n",sizeof(int));
+// 	printf("Address = %lu,value = %d\n",(uintptr_t)p,*p);
+// 	printf("Address = %lu,value = %d\n",(uintptr_t)(p+1),*(p+1));
+// 	char *p0;
+// 	p0 = (char *)p;
+// 	printf("size of integer is %d bytes\n",sizeof(char));
+// 	printf("Address = %lu,value = %d\n",(uintptr_t)p0,*p0);
+// 	printf("Address = %lu,value = %d\n",(uintptr_t)(p0+1),*(p0+1));
+//
+// 	//空指针——没有映射到任何特定的类型
+// 	void *p1;
+// 	p1 = p;
+// 	printf("Address = %lu\n",(uintptr_t)p1);//应为没有映射到任何特定的类型，所以空指针无法直接解引用。
+// 	printf("Address = %lu\n",(uintptr_t)(p1+1));//应为没有映射到任何特定的类型，所以空指针也无法进行算数运算。
+// /*
+// 	* 为什么能编译通过？
+// 	编译器扩展支持：
+//
+// 	GCC和Clang等主流编译器默认允许void*算术运算（将其视为char*类型）
+//
+// 	运算时按1字节为单位进行地址计算
+//
+// 	这是对C标准的扩展（非标准行为）
+//  */
+// };
+
+//指向指针的指针
 int main(void)
 {
-    int a = 1025;
-	//00000000 00000000 00000100 00000001
-	int *p;
-    p = &a;
-	printf("size of integer is %d bytes\n",sizeof(int));
-	printf("Address = %lu,value = %d\n",(uintptr_t)p,*p);
-	printf("Address = %lu,value = %d\n",(uintptr_t)(p+1),*(p+1));
-	char *p0;
-	p0 = (char *)p;
-	printf("size of integer is %d bytes\n",sizeof(char));
-	printf("Address = %lu,value = %d\n",(uintptr_t)p0,*p0);
-	printf("Address = %lu,value = %d\n",(uintptr_t)(p0+1),*(p0+1));
+    int a = 15;
+	int *p = &a;
+    int **p1 = &p;
+	int ***p2 = &p1;
 
-	//空指针——没有映射到任何特定的类型
-	void *p1;
-	p1 = p;
-	printf("Address = %lu\n",(uintptr_t)p1);//应为没有映射到任何特定的类型，所以空指针无法直接解引用。
-	printf("Address = %lu\n",(uintptr_t)(p1+1));//应为没有映射到任何特定的类型，所以空指针也无法进行算数运算。
-/*
-	* 为什么能编译通过？
-	编译器扩展支持：
+	printf("%d\n",*p);
+	printf("%d\n",*p1);
+	printf("%d\n",*(*p1));
+	printf("%d\n",*(*p2));
+	printf("%d\n",*(*(*p2)));
 
-	GCC和Clang等主流编译器默认允许void*算术运算（将其视为char*类型）
+	***p2 = 5;
+	printf("a = %d\n",a);
 
-	运算时按1字节为单位进行地址计算
+	**p1 = *p+5;
+	printf("x = %d",a);
 
-	这是对C标准的扩展（非标准行为）
- */
+	return 0;
 };
