@@ -42,28 +42,28 @@
 #include <stdio.h>
 #include <inttypes.h>  // 包含 PRIuPTR 定义
 
-int main() {
-	int a = 10;
-	int *p = &a;//现在P是一个指针变量，换句话说P是一个存放整形变量的地址的变量。
-
-	// 正确打印十进制地址
-	printf("%lu\n", (uintptr_t)p);   // p的值（&a的地址）
-	printf("%lu\n", (uintptr_t)&a);  // a的地址
-	printf("%lu\n", (uintptr_t)&p);  // p自身的地址
-
-	// 打印指针指向的值（正确方式）
-	printf("%d\n", *p);  // 输出a的值（10）
-
-	*p= 15;//解引用
-	printf("%d\n",*p);
-
-	//指针的算术运算
-	printf("%lu\n",(uintptr_t)p);//假设地址为2002
-	printf("%d\n",*p);
-	printf("%lu\n",(uintptr_t)(p+1));//int类型的指针+1后，2002+4=2006.
-	printf("%d\n",*(p+1));//垃圾值，这是使用指针运算时的一个危险地方。利用指针操作可以到达任何地方，有时候这种操作会引起不期望的行为。
-	return 0;
-}
+// int main() {
+// 	int a = 10;
+// 	int *p = &a;//现在P是一个指针变量，换句话说P是一个存放整形变量的地址的变量。
+//
+// 	// 正确打印十进制地址
+// 	printf("%lu\n", (uintptr_t)p);   // p的值（&a的地址）
+// 	printf("%lu\n", (uintptr_t)&a);  // a的地址
+// 	printf("%lu\n", (uintptr_t)&p);  // p自身的地址
+//
+// 	// 打印指针指向的值（正确方式）
+// 	printf("%d\n", *p);  // 输出a的值（10）
+//
+// 	*p= 15;//解引用
+// 	printf("%d\n",*p);
+//
+// 	//指针的算术运算
+// 	printf("%lu\n",(uintptr_t)p);//假设地址为2002
+// 	printf("%d\n",*p);
+// 	printf("%lu\n",(uintptr_t)(p+1));//int类型的指针+1后，2002+4=2006.
+// 	printf("%d\n",*(p+1));//垃圾值，这是使用指针运算时的一个危险地方。利用指针操作可以到达任何地方，有时候这种操作会引起不期望的行为。
+// 	return 0;
+// }
 
 /*
 不推荐直接使用 %d 打印指针地址，因为这会导致未定义行为或错误结果。原因如下：
@@ -84,3 +84,40 @@ C标准规定类型不匹配的 printf 会导致未定义行为
 */
 
 //指针的类型，空的指针（void pointer）,指针的算数运算
+
+/*
+因为：我们不仅仅使用指针来存储内存地址，同时也是用它来解引用那些地址的内容，这样我们就能访问和修改这些地址对应的值。
+所以：指针是强类型的！！！也就是说：我们需要用特定类型的指针变量来存放特定类型变量的地址。
+*/
+
+int main(void)
+{
+    int a = 1025;
+	//00000000 00000000 00000100 00000001
+	int *p;
+    p = &a;
+	printf("size of integer is %d bytes\n",sizeof(int));
+	printf("Address = %lu,value = %d\n",(uintptr_t)p,*p);
+	printf("Address = %lu,value = %d\n",(uintptr_t)(p+1),*(p+1));
+	char *p0;
+	p0 = (char *)p;
+	printf("size of integer is %d bytes\n",sizeof(char));
+	printf("Address = %lu,value = %d\n",(uintptr_t)p0,*p0);
+	printf("Address = %lu,value = %d\n",(uintptr_t)(p0+1),*(p0+1));
+
+	//空指针——没有映射到任何特定的类型
+	void *p1;
+	p1 = p;
+	printf("Address = %lu\n",(uintptr_t)p1);//应为没有映射到任何特定的类型，所以空指针无法直接解引用。
+	printf("Address = %lu\n",(uintptr_t)(p1+1));//应为没有映射到任何特定的类型，所以空指针也无法进行算数运算。
+/*
+	* 为什么能编译通过？
+	编译器扩展支持：
+
+	GCC和Clang等主流编译器默认允许void*算术运算（将其视为char*类型）
+
+	运算时按1字节为单位进行地址计算
+
+	这是对C标准的扩展（非标准行为）
+ */
+};
