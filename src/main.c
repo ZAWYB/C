@@ -123,24 +123,174 @@ C标准规定类型不匹配的 printf 会导致未定义行为
 // };
 
 //指向指针的指针
+// int main(void)
+// {
+//     int a = 15;
+// 	int *p = &a;
+//     int **p1 = &p;
+// 	int ***p2 = &p1;
+//
+// 	printf("%d\n",*p);
+// 	printf("%d\n",*p1);
+// 	printf("%d\n",*(*p1));
+// 	printf("%d\n",*(*p2));
+// 	printf("%d\n",*(*(*p2)));
+//
+// 	***p2 = 5;
+// 	printf("a = %d\n",a);
+//
+// 	**p1 = *p+5;
+// 	printf("x = %d",a);
+//
+// 	return 0;
+// };
+
+
+//函数的传值VS传引用（把指针作为函数参数）
+
+
+//函数的传值
+// void Increment(int x);
+// int main(void)
+// {
+//     int a = 10;
+//     Increment(a);
+//     return 0;
+// };
+//
+// void Increment(int x)
+// {
+// 	x = x+5;
+// 	printf("%d\n",x);
+// };
+
+//传引用(节省内存空间)
+// void Increment(int *p);
+// int main(void)
+// {
+// 	int a = 10;
+// 	Increment(&a);
+// 	printf("%d\n", a);
+// 	return 0;
+// };
+//
+// void Increment(int *p)
+// {
+// 	*p = (*p) + 1;
+// };
+
+
+//数组和指针
+/*
+ *数组首元素的地址也被称作为数组的基地址 int *p =a; p=a;直接使用数组名a会得到数组的基地址。
+ * Address --- &A[i] or (A+1)
+ * value --- A[i] or *(A+i)
+ */
+
+// int main(void)
+// {
+//     // int A[] = {2,3,4,5,6};
+//     // printf("%lu\n",(uintptr_t)A);
+//     // printf("%lu\n",(uintptr_t)&A[0]);
+//     // printf("%d\n",A[0]);
+//     // printf("%d\n",*(A+1));
+//
+//
+//     int A[] = {2,4,5,8,1};
+//     int i;
+//
+//     for (int i = 0; i < 5; i++)
+//     {
+//         printf("Address = %lu\n",(uintptr_t)&A[i]);
+//     	printf("Address = %lu\n",(uintptr_t)(A+i));
+//     	printf("value = %d\n",A[i]);
+//     	printf("value = %d\n",*(A+i));
+//     };
+//
+//     return 0;
+// };
+
+
+
+
+
+/*
+ * 在C语言中，数组作为函数参数传递时，本质上传的是数组首元素的地址（指针），而非整个数组。
+ * 这种设计导致函数内部无法直接获取原数组的长度，因此需要根据数组类型的特点决定是否额外传递大小参数：
+ */
+
+//数组作为函数参数
+// int SumOElements(int A[],int size); //int *A  === int[]  it is the same
+// int main(void)
+// {
+//     int A[] = {1,2,3,4,5,};
+//     int size = sizeof(A)/sizeof(A[0]);
+//     int total = SumOElements(A,size);//A can be uesd for &A[0]
+//     printf("Sum of elements =  %d\n",total);
+//
+//     return 0;
+// };
+// int SumOElements(int A[],int size)
+/*
+整型数组（int[]）需要传递大小的原因
+无终止符：整型数组没有内置的结束标记（如 '\0'）。
+内存风险：若不在函数内限定范围，越界访问会导致未定义行为（崩溃/数据错误）。
+必须传递大小：需额外参数 size 明确告知函数有效元素的数量。
+ */
+// {
+//     int i,sum = 0;
+// 	for(i=0;i<size;i++)
+// 	{
+// 		sum += A[i];
+// 	};
+//
+// 	return sum;
+// };
+
+
+//指针和字符数组（如何利用指针对字符数组进行操作）
+//字符数组之所以很重要，是因为我们使用它来存储字符串然后再他们之上做很多操作，比如修改拷贝字符串链接两个字符串或者找到字符串的属性，比如找到字符串的长度
+#include <string.h>
+// int main(void)
+//
+// {
+//      char name[5];
+//      int len = 0;
+//      name [0] =  'J';
+//      name [1] =  'O';
+//      name [2] =  'H';
+//      name [3] =  'N';
+//      name [4] =  '\0';
+//      len  =  strlen(name);
+//      printf("%s\n",name);
+//      printf("%d\n",len);
+//
+//      return 0;
+// };
+
+void print(char *c);//在数组作为函数参数使用时，编译器会强制把char c[]强制转换为char *c。只传引用数组的首地址。
 int main(void)
 {
-    int a = 15;
-	int *p = &a;
-    int **p1 = &p;
-	int ***p2 = &p1;
-
-	printf("%d\n",*p);
-	printf("%d\n",*p1);
-	printf("%d\n",*(*p1));
-	printf("%d\n",*(*p2));
-	printf("%d\n",*(*(*p2)));
-
-	***p2 = 5;
-	printf("a = %d\n",a);
-
-	**p1 = *p+5;
-	printf("x = %d",a);
-
-	return 0;
+    char c [8] =  "HELLO";
+    print(c);
+    return 0;
 };
+
+void print(char *c)
+/*
+字符串数组（char[]）不需要传递大小的原因
+终止符机制：字符串以特殊字符 '\0'（空字符）作为结束标记。
+函数逻辑：遍历时检查当前字符是否为 '\0'，遇到则停止。无需知道数组总长度。
+传递内容：只需首地址 c，函数能自行找到结尾。
+ */
+{
+    int i= 0;
+    while (c[i] != '\0')
+    {
+      printf("%c",c[i]);
+      i++;
+    };
+
+};
+
+//指针和多维数组
